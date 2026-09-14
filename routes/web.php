@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\RegisterController; // Ubicado al inicio del archivo
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 // Ruta raíz
 Route::get('/', function () {
@@ -89,10 +90,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Mostrar formulario de registro
+// Rutas de Registro
 Route::get('/registro', [RegisterController::class, 'create'])->name('register');
+Route::post('/registro', [RegisterController::class, 'store']);
+
+// Rutas de Login
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
 
 // Guardar datos del usuario
 Route::post('/registro', [RegisterController::class, 'store']);
 
 ?>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 95faf00b72d9bbcba21dbe5aeb1d9403ecd7170e
+>>>>>>> 5ff0ad0fbcb8295f2387a4229e34815aa522b018
