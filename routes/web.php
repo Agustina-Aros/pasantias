@@ -1,9 +1,10 @@
 <?php
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\RegisterController; // Ubicado al inicio del archivo
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RegisterController;
 
 // Ruta raíz
 Route::get('/', function () {
@@ -15,14 +16,23 @@ Route::get('/registro', [RegisterController::class, 'create'])->name('register')
 Route::post('/registro', [RegisterController::class, 'store']);
 
 // Rutas de Login
-Route::get('/login', function () {
-    return view('verificar.login');
+    return redirect()->route('login');
 });
 
+Route::get('/registro', [RegisterController::class, 'create'])->name('register');
+Route::post('/registro', [RegisterController::class, 'store']);
+
+Route::get('/login', function () {
+    return view('verificar.login');
+})->name('login');
+
+
 Route::post('/login', function (Request $request) {
-    $nombre = $request->input('nombre');
-    $email = $request->input('email');
-    $passwordEncriptada = Hash::make($request->input('password'));
+    
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
     return "Formulario recibido correctamente.<br>Usuario: " . $nombre;
 });
@@ -47,3 +57,42 @@ Route::post('/crear-cuenta', function (Request $request) {
 
     return redirect('/crear-cuenta')->with('mensaje', "¡Usuario registrado correctamente!");
 });
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        return redirect()->intended('/dashboard'); 
+    }
+
+    return back()->withErrors([
+        'email' => 'Las credenciales no coinciden con nuestros registros.',
+    ]);
+});
+
+
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::post('/logout', function (Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
+    })->name('logout');
+
+});
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// Mostrar formulario de registro
+Route::get('/registro', [RegisterController::class, 'create'])->name('register');
+
+// Guardar datos del usuario
+Route::post('/registro', [RegisterController::class, 'store']);
+
+?>
