@@ -69,4 +69,7 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/registro', [RegisterController::class, 'store']);
 
 ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 95faf00b72d9bbcba21dbe5aeb1d9403ecd7170e
