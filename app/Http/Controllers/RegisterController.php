@@ -10,33 +10,33 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    public function create()
-    {
-        return view('auth.registro');
-    }
-
-public function store(Request $request)
+public function showRegistrationForm()
 {
-   $validator = Validator::make($request->all(), [
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:usuarios',
-        'password' => 'required|string|min:8',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect()->back()
-            ->withErrors($validator)
-            ->withInput();
-    }
-
-    $user = User::create([
-        'nombre' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
-
-    Auth::login($user);
-
-    return redirect()->route('home');
+    return view('auth.registro');
 }
+
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:usuarios', // Cambiado a 'usuarios'
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user = User::create([
+            'nombre' => $request->name, // Cambiado a 'nombre'
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('home');
+    }
 }

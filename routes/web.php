@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductoController; // Asegúrate de importar el controlador de productos
 
 // Rutas Públicas (Invitados)
 Route::middleware('guest')->group(function () {
-    Route::get('/registro', [RegisterController::class, 'create'])->name('register');
+    Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/registro', [RegisterController::class, 'store']);
 
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -15,9 +17,11 @@ Route::middleware('guest')->group(function () {
 
 // Rutas Protegidas (Solo Usuarios Autenticados)
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('home');
-    })->name('home');
-
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    // Rutas para el CRUD de productos
+    Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
+    Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
+    Route::delete('/productos/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 });
