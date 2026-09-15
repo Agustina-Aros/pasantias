@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Cuenta - Pasantía</title>
+    <title>Crear Cuenta </title>
     <link rel="stylesheet" href="{{ asset('css/estilo.css') }}">
 </head>
 <body>
@@ -11,10 +11,22 @@
     <main class="login-container">
         <h2>Registro de Usuario</h2>
 
+        {{-- Mensaje de éxito al registrar --}}
         @if(session('mensaje'))
             <p class="alert-success">
                 {{ session('mensaje') }}
             </p>
+        @endif
+
+        {{-- Mensajes de error de validación --}}
+        @if ($errors->any())
+            <div class="alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
 
         <form action="/crear-cuenta" method="POST">

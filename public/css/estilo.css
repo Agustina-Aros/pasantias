@@ -117,3 +117,17 @@ button[type="submit"]:active {
     text-align: center;
     border: 1px solid #bbf7d0;
 }
+
+.alert-danger {
+    background-color: #fef2f2;
+    color: #991b1b;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    border: 1px solid #fecaca;
+}
+
+.alert-danger ul {
+    margin-left: 18px;
+}
