@@ -14,24 +14,20 @@ class RegisterController extends Controller
         return view('auth.registro');
     }
 
-    public function store(Request $request)
-    {
-        // Validar los datos recibidos
-        $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8',
+    ]);
 
-        // Crear el registro en la BD con la clave encriptada
-        $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+    User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+    ]);
 
-        Auth::login($user);
-
-        return redirect('/')->with('success', 'Registro exitoso.');
-    }
+    return redirect()->route('login')->with('success', 'Usuario registrado correctamente.');
+}
 }
