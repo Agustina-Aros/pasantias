@@ -12,7 +12,7 @@
         <h2>Registro de Usuario</h2>
 
         @if(session('mensaje'))
-            <p style="color: green; text-align: center; margin-bottom: 15px;">
+            <p class="alert-success">
                 {{ session('mensaje') }}
             </p>
         @endif
@@ -38,9 +38,8 @@
             <button type="submit">Registrarse</button>
         </form>
 
-        <br>
-        <div style="text-align: center;">
-            <a href="/login" style="color: #2563eb; text-decoration: none; font-size: 14px;">¿Ya tienes cuenta? Inicia sesión</a>
+        <div class="form-footer">
+            <a href="/login">¿Ya tienes cuenta? Inicia sesión</a>
         </div>
     </main>
 

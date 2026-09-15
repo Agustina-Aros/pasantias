@@ -1,47 +1,30 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 
-<<<<<<< HEAD
-=======
 // Ruta raíz
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Rutas de Registro con Controlador
-Route::get('/registro', [RegisterController::class, 'create'])->name('register');
-Route::post('/registro', [RegisterController::class, 'store']);
-
-    return redirect()->route('login');
-});
-
-Route::get('/registro', [RegisterController::class, 'create'])->name('register');
-Route::post('/registro', [RegisterController::class, 'store']);
-
-Route::get('/login', function () {
-    return view('verificar.login');
-})->name('login');
-
-
-Route::post('/login', function (Request $request) {
-    
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-
-    return "Formulario recibido correctamente.<br>Usuario: " . $nombre;
-});
-
-// Rutas de Crear Cuenta
+// Rutas de Registro de Usuario (Vista e Inserción)
 Route::get('/crear-cuenta', function () {
     return view('verificar.crear');
-});
+})->name('register');
 
 Route::post('/crear-cuenta', function (Request $request) {
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:6',
+    ]);
+
     $nombre = $request->input('nombre');
     $email = $request->input('email');
     $passwordEncriptada = Hash::make($request->input('password'));
@@ -54,8 +37,20 @@ Route::post('/crear-cuenta', function (Request $request) {
         'updated_at' => now(),
     ]);
 
-    return redirect('/crear-cuenta')->with('mensaje', "¡Usuario registrado correctamente!");
+    return redirect('/crear-cuenta')->with('mensaje', '¡Usuario registrado correctamente!');
 });
+
+// Rutas de Login (Vista e Intento de Sesión)
+Route::get('/login', function () {
+    return view('verificar.login');
+})->name('login');
+
+Route::post('/login', function (Request $request) {
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
         return redirect()->intended('/dashboard'); 
@@ -66,8 +61,7 @@ Route::post('/crear-cuenta', function (Request $request) {
     ]);
 });
 
-
-
+// Rutas Protegidas por Autenticación
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', function () {
@@ -83,25 +77,3 @@ Route::middleware(['auth'])->group(function () {
     })->name('logout');
 
 });
-
->>>>>>> fcb114ceb2b05b3fd60373f8e95907fa603dfbe4
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Rutas de Registro
-Route::get('/registro', [RegisterController::class, 'create'])->name('register');
-Route::post('/registro', [RegisterController::class, 'store']);
-
-// Rutas de Login
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
-<<<<<<< HEAD
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-=======
-
-// Guardar datos del usuario
-Route::post('/registro', [RegisterController::class, 'store']);
-
-?>
->>>>>>> fcb114ceb2b05b3fd60373f8e95907fa603dfbe4
