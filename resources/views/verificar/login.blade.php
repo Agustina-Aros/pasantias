@@ -3,32 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
-
+    <title>Iniciar Sesión - Pasantía</title>
     <link rel="stylesheet" href="{{ asset('css/estilo.css') }}">
 </head>
 <body>
 
     <main class="login-container">
+        <h2>Inicio de Sesión</h2>
+
+        {{-- Errores de credenciales (email o contraseña incorrectos) --}}
+        @if ($errors->any())
+            <div class="alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="/login" method="POST">
-            {{-- Token de seguridad obligatorio en Laravel --}}
             @csrf
 
-            <h2>Inicio de Sesión</h2>
-
-            <div>
-                <label for="nombre">Nombre completo</label>
-                <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
-
+            <div class="input-group">
                 <label for="email">Correo electrónico</label>
                 <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus>
+            </div>
 
+            <div class="input-group">
                 <label for="password">Contraseña</label>
                 <input type="password" id="password" name="password" required>
-
-                <button type="submit">Iniciar sesión</button>
             </div>
+
+            <button type="submit">Iniciar sesión</button>
         </form>
+
+        <div class="form-footer">
+            <a href="/crear-cuenta">¿No tienes cuenta? Regístrate</a>
+        </div>
     </main>
 
 </body>
