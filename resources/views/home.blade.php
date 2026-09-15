@@ -36,6 +36,8 @@
             </div>
         @endif
 
+      
+
         <!-- Tabla CRUD de Productos -->
         <div class="card shadow-sm border-0 p-4">
             <div class="card-body">
