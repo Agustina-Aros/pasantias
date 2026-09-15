@@ -17,7 +17,6 @@ Route::middleware('guest')->group(function () {
 
 // Rutas Protegidas (Solo Usuarios Autenticados)
 Route::middleware('auth')->group(function () {
-    // Vista principal tras iniciar sesión
     Route::get('/', function () {
         return view('home');
     })->name('home');
