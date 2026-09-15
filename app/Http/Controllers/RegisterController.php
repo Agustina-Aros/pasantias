@@ -20,7 +20,7 @@ public function store(Request $request)
    $validator = Validator::make($request->all(), [
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:usuarios',
-        'password' => 'required|string|min:8|confirmed',
+        'password' => 'required|string|min:8',
     ]);
 
     if ($validator->fails()) {
@@ -30,7 +30,7 @@ public function store(Request $request)
     }
 
     $user = User::create([
-        'name' => $request->name,
+        'nombre' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
     ]);
