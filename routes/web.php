@@ -6,7 +6,7 @@ use App\Http\Controllers\LoginController;
 
 // Rutas Públicas (Invitados)
 Route::middleware('guest')->group(function () {
-    Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::get('/registro', [RegisterController::class, 'create'])->name('register');
     Route::post('/registro', [RegisterController::class, 'store']);
 
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
