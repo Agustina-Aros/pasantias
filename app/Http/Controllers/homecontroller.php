@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        
         $productos = Producto::paginate(5);
 
         return view('home', compact('productos'));
