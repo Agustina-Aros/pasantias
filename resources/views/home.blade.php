@@ -75,6 +75,11 @@
                                         </a>
                                     </td>
                                 </tr>
+                                    <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
                             @empty
                                 <tr>
                                     <td colspan="5" class="text-center text-muted py-3">
@@ -82,6 +87,8 @@
                                     </td>
                                 </tr>
                             @endforelse
+                            <td class="d-flex gap-2">
+</td>
                         </tbody>
                     </table>
                 </div>
