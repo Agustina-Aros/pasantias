@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductoController; // Asegúrate de importar el controlador de productos
+use App\Http\Controllers\ProductoController;
 
 // Rutas Públicas (Invitados)
 Route::middleware('guest')->group(function () {
@@ -20,10 +20,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    // Rutas para el CRUD de productos
+    // CRUD de Productos protegido
+    Route::get('/productos/crear', [ProductoController::class, 'create'])->name('productos.create');
+    Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
     Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
     Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
     Route::delete('/productos/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
-    Route::get('/productos/crear', [ProductoController::class, 'create'])->name('productos.create');
-Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
-    });
+});
