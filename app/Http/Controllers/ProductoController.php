@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Producto; // Primera letra en mayúscula por convención PSR-4
+use App\Models\producto;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -57,7 +57,12 @@ class ProductoController extends Controller
             'precio'      => $request->precio,
             'stock'       => $request->stock,
         ]);
+    }
+    public function destroy($id)
+    {
+        $producto = Producto::findOrFail($id);
+        $producto->delete();
 
-        return redirect()->route('home')->with('success', 'Producto actualizado correctamente');
+        return redirect()->back()->with('success', 'Producto eliminado correctamente.');
     }
 }
