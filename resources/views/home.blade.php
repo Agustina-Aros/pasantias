@@ -12,10 +12,18 @@
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">Mi Sistema</a>
             
-            <form action="{{ route('logout') }}" method="POST" class="d-flex">
-                @csrf
-                <button type="submit" class="btn btn-outline-light btn-sm fw-semibold">Cerrar Sesión</button>
-            </form>
+            <div class="d-flex align-items-center gap-2">
+                <!-- Botón de Crear Producto -->
+                <a href="{{ route('productos.create') }}" class="btn btn-light btn-sm fw-semibold text-primary">
+                    ➕ Crear Producto
+                </a>
+
+                <!-- Botón de Cerrar Sesión -->
+                <form action="{{ route('logout') }}" method="POST" class="m-0">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-light btn-sm fw-semibold">Cerrar Sesión</button>
+                </form>
+            </div>
         </div>
     </nav>
 
@@ -28,7 +36,7 @@
             </div>
         </div>
 
-        <!-- Alerta de éxito tras editar -->
+        <!-- Alerta de éxito tras editar o crear -->
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
                 {{ session('success') }}
@@ -36,12 +44,12 @@
             </div>
         @endif
 
-      
-
         <!-- Tabla CRUD de Productos -->
         <div class="card shadow-sm border-0 p-4">
             <div class="card-body">
-                <h4 class="fw-bold text-primary mb-3">Listado de Productos</h4>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="fw-bold text-primary mb-0">Listado de Productos</h4>
+                </div>
 
                 <div class="table-responsive">
                     <table class="table table-hover align-middle">

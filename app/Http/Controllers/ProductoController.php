@@ -2,15 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\producto; // Ajustar a Producto si la 'P' es mayúscula
+use App\Models\Producto; // Primera letra en mayúscula por convención PSR-4
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
+    // Muestra el formulario para crear un nuevo producto
+    public function create()
+    {
+        return view('productos.create');
+    }
+
+    // Guarda el nuevo producto en la base de datos
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'precio' => 'required|numeric|min:0',
+            'stock'  => 'required|integer|min:0',
+        ]);
+
+        Producto::create([
+            'nombre' => $request->nombre,
+            'precio' => $request->precio,
+            'stock'  => $request->stock,
+        ]);
+
+        return redirect()->route('home')->with('success', 'Producto creado correctamente');
+    }
+
     // Carga la vista independiente de edición
     public function edit($id)
     {
-        $producto = producto::findOrFail($id);
+        $producto = Producto::findOrFail($id);
         return view('productos.edit', compact('producto'));
     }
 
@@ -19,11 +43,11 @@ class ProductoController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'precio' => 'required|numeric',
-            'stock'  => 'required|integer',
+            'precio' => 'required|numeric|min:0',
+            'stock'  => 'required|integer|min:0',
         ]);
 
-        $prod = producto::findOrFail($id);
+        $prod = Producto::findOrFail($id);
         $prod->update([
             'nombre' => $request->nombre,
             'precio' => $request->precio,
