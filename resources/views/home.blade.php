@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <!-- Alerta de éxito tras editar o crear -->
+        <!-- Alerta de éxito -->
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
                 {{ session('success') }}
@@ -57,6 +57,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
+                                <th>Descripción</th>
                                 <th>Precio</th>
                                 <th>Stock</th>
                                 <th class="text-center">Acciones</th>
@@ -67,12 +68,22 @@
                                 <tr>
                                     <td>{{ $producto->id }}</td>
                                     <td>{{ $producto->nombre }}</td>
+                                    <td>{{ $producto->descripcion ?? 'Sin descripción' }}</td>
                                     <td>${{ number_format($producto->precio, 2) }}</td>
                                     <td>{{ $producto->stock }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('productos.edit', $producto->id) }}" class="btn btn-warning btn-sm fw-semibold">
-                                            ✏️ Editar
-                                        </a>
+                                        <div class="d-inline-flex gap-1">
+                                            <a href="{{ route('productos.edit', $producto->id) }}" class="btn btn-warning btn-sm fw-semibold">
+                                                ✏️ Editar
+                                            </a>
+                                            <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm fw-semibold">
+                                                    🗑️ Eliminar
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                                     <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');">
@@ -82,7 +93,7 @@
                                     </form>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center text-muted py-3">
+                                    <td colspan="6" class="text-center text-muted py-3">
                                         No hay productos registrados en la base de datos.
                                     </td>
                                 </tr>
@@ -96,5 +107,6 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
