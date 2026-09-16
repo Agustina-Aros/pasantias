@@ -11,7 +11,7 @@
     <!-- Navbar Adaptable con Menú Desplegable -->
     <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Mi Sistema</a>
+            <a class="navbar-brand fw-bold" href="#">Zapamundo</a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
