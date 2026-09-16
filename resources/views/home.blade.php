@@ -14,7 +14,7 @@
             <!-- Brand con Logo y Nombre del Sistema -->
             <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
                 <img src="{{ asset('imagenes/logo.png') }}" alt="Logo" class="me-2" style="max-height: 40px; width: auto; object-fit: contain;">
-                <span>Mi Sistema</span>
+                <span>ZapaMundo</span>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
