@@ -107,6 +107,7 @@
                         </tbody>
                     </table>
 
+                    <div class="mt-4 d-flex flex-column align-items-center">
                         @if ($productos->hasPages())
                             <ul class="pagination mb-2">
                                 @if ($productos->onFirstPage())
