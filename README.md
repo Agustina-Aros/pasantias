@@ -14,7 +14,8 @@
 
 <h3>Clonar o descargar el repositorio</h3>
 <p>Clona el repositorio en el git bash del proyecto con el siguiente link:</p>
-<p></p>
+    
+    <p>https://github.com/Agustina-Aros/pasantias.git</p>
 
 <h3>1. Configurar el archivo de entorno (.env)</h3>
 <p>Copia el archivo <strong>.env.example</strong> para crear el archivo .env local:</p>
