@@ -11,7 +11,11 @@
     <!-- Navbar Adaptable con Menú Desplegable -->
     <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Mi Sistema</a>
+            <!-- Brand con Logo y Nombre del Sistema -->
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                <img src="{{ asset('imagenes/logo.png') }}" alt="Logo" class="me-2" style="max-height: 40px; width: auto; object-fit: contain;">
+                <span>Mi Sistema</span>
+            </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -102,7 +106,6 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <div class="mt-4 d-flex flex-column align-items-center">
 
                         @if ($productos->hasPages())
                             <ul class="pagination mb-2">
