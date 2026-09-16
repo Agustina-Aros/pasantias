@@ -48,7 +48,7 @@ class UsuarioSeeder extends Seeder
         Usuario::create([
             'nombre'   => 'Santiago López',
             'email'    => 'santiago.lopez@gmail.com',
-            'password' => Hash::make('santiClaveSegura'),
+            'password' => Hash::make('santiLopezSegura'),
         ]);
     }
 }
