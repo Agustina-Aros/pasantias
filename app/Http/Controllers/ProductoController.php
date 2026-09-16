@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\producto;
 use Illuminate\Http\Request;
-use App\Models\Producto;
-use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
@@ -64,8 +62,3 @@ class ProductoController extends Controller
         return redirect()->back()->with('success', 'Producto eliminado correctamente.');
     }
 }
-
-        return redirect()->route('home')->with('success', 'Producto actualizado correctamente');
-    }
-}
-
