@@ -15,35 +15,35 @@
 <h3>Clonar o descargar el repositorio</h3>
 <p>Clona el repositorio en el git bash del proyecto con el siguiente link:</p>
     
-    <p>https://github.com/Agustina-Aros/pasantias.git</p>
+    https://github.com/Agustina-Aros/pasantias.git
 
 <h3>1. Configurar el archivo de entorno (.env)</h3>
 <p>Copia el archivo <strong>.env.example</strong> para crear el archivo .env local:</p>
 
-    <p>    cp .env.example .env</p>
+    cp .env.example .env
 
 <p>Generar la clave de encriptación de la aplicación:</p>
 
-    <p>php artisan key:generate</p>
+    php artisan key:generate
 
 <p>Abrí el archivo <strong>.env</strong> recien creado y configura las credenciales de la base de datos <strong>bdpasantias</strong>:</p>
 
-    <p>DB_CONNECTION=mysql</p>
-    <p>DB_HOST=127.0.0.1</p>
-    <p>DB_PORT=3306</p>
-    <p>DB_DATABASE=bdpasantias</p>
-    <p>BD_USERNAME=root</p>
-    <p>BD_PASSWORD=</p>
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=bdpasantias
+    BD_USERNAME=root
+    BD_PASSWORD=
 
 <h3>2. Configurar e importar la Base de Datos (<strong>bdpasantias</strong>)</h3>
 <p> Abrí phpMyAdmin o tu gestor de base de datos y crea la base de datos vacia llamda <strong>bdpasantias</strong>.</p>
 <p> En la terminal, ejecuta las migraciones para generar las tablas <strong>usuarios</strong> y <strong>productos</strong>:</p>
 
-    <p>php artisan migrate:fresh</p>
+    php artisan migrate:fresh
 
 <p> Iniciar el servidor de desarrollo integrado de laravel, ejecuta:</p>
 
-    <p>php artisan serve</p>
+    php artisan serve
 
 
 <h2>Páginas:</h2>
