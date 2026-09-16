@@ -60,6 +60,8 @@ class ProductoController extends Controller
             'precio'      => $request->precio,
             'stock'       => $request->stock,
         ]);
+
+        return redirect()->route('home')->with('success', 'Producto actualizado correctamente.');
     }
     public function destroy($id)
     {
