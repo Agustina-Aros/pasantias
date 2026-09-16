@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Pasantía</title>
     <link rel="stylesheet" href="{{ asset('css/estilo.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('imagenes/icono.png') }}">
 </head>
 <body>
 
