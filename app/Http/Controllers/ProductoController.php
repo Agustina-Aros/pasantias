@@ -7,18 +7,11 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
-    public function index()
-    {
-        $productos = Producto::paginate(5);
-
-        return view('productos.index', compact('productos'));
-    }
-
     public function create()
     {
         return view('productos.create');
     }
-    
+
     public function store(Request $request)
     {
         $request->validate([
@@ -60,8 +53,6 @@ class ProductoController extends Controller
             'precio'      => $request->precio,
             'stock'       => $request->stock,
         ]);
-
-        return redirect()->route('home')->with('success', 'Producto actualizado correctamente.');
     }
     public function destroy($id)
     {
