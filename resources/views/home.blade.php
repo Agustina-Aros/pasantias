@@ -16,7 +16,7 @@
             <!-- Brand con Logo y Nombre del Sistema -->
             <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
                 <img src="{{ asset('imagenes/logo.png') }}" alt="Logo" class="me-2" style="max-height: 40px; width: auto; object-fit: contain;">
-                <span>Mi Sistema</span>
+                <span>ZapaMundo</span>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,14 +108,37 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-center mt-3">
-                        {{ $productos->links() }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
+                    <div class="mt-4 d-flex flex-column align-items-center">
+                        @if ($productos->hasPages())
+                            <ul class="pagination mb-2">
+                                @if ($productos->onFirstPage())
+                                    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                @else
+                                    <li class="page-item"><a class="page-link" href="{{ $productos->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                                @endif
+
+                                @foreach ($productos->getUrlRange(1, $productos->lastPage()) as $page => $url)
+                                    @if ($page == $productos->currentPage())
+                                        <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
+                                    @else
+                                        <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
+                                    @endif
+                                @endforeach
+
+                                @if ($productos->hasMorePages())
+                                    <li class="page-item"><a class="page-link" href="{{ $productos->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                                @else
+                                    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                @endif
+                            </ul>
+                        @endif
+
+                        <div class="text-muted small">
+                            Mostrando {{ $productos->firstItem() }} a {{ $productos->lastItem() }} de {{ $productos->total() }} resultados
+                        </div>
+
+                    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
