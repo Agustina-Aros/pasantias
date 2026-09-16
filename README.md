@@ -57,6 +57,6 @@
 <ul>
     <li>Aros, Agustina</li>
     <li>Fuentes, Aixa</li>
-    <li>Illanes, sebastián</li>
+    <li>Illanes, Sebastián</li>
     <li>Villar, Ceferino</li>
 </ul>
