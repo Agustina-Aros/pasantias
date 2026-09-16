@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User; // o App\Models\usuario según tu modelo
+use App\Models\User; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +19,7 @@ public function showRegistrationForm()
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:usuarios', // Cambiado a 'usuarios'
+            'email' => 'required|string|email|max:255|unique:usuarios', 
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -30,7 +30,7 @@ public function showRegistrationForm()
         }
 
         $user = User::create([
-            'nombre' => $request->name, // Cambiado a 'nombre'
+            'nombre' => $request->name, 
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

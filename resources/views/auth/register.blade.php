@@ -27,7 +27,7 @@
 
                 <div class="mb-3">
                     <label for="nombre" class="form-label fw-semibold">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}" placeholder="Tu nombre" required autofocus>
+                    <input type="text" name="name" id="nombre" class="form-control" value="{{ old('nombre') }}" placeholder="Tu nombre" required autofocus>
                 </div>
 
                 <div class="mb-3">
