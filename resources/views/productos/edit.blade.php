@@ -39,6 +39,11 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="descripcion" class="form-label fw-semibold">Descripción</label>
+                    <input type="text" name="descripcion" id="descripcion" class="form-control" value="{{ old('descripcion', $producto->descripcion) }}" required>
+                </div>
+
+                <div class="mb-3">
                     <label for="precio" class="form-label fw-semibold">Precio</label>
                     <input type="number" step="0.01" name="precio" id="precio" class="form-control" value="{{ old('precio', $producto->precio) }}" required>
                 </div>

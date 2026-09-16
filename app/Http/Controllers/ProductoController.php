@@ -17,15 +17,17 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'precio' => 'required|numeric|min:0',
-            'stock'  => 'required|integer|min:0',
+            'nombre'      => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'precio'      => 'required|numeric|min:0',
+            'stock'       => 'required|integer|min:0',
         ]);
 
         Producto::create([
-            'nombre' => $request->nombre,
-            'precio' => $request->precio,
-            'stock'  => $request->stock,
+            'nombre'      => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'precio'      => $request->precio,
+            'stock'       => $request->stock,
         ]);
 
         return redirect()->route('home')->with('success', 'Producto creado correctamente');
@@ -42,16 +44,18 @@ class ProductoController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'precio' => 'required|numeric|min:0',
-            'stock'  => 'required|integer|min:0',
+            'nombre'      => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'precio'      => 'required|numeric|min:0',
+            'stock'       => 'required|integer|min:0',
         ]);
 
         $prod = Producto::findOrFail($id);
         $prod->update([
-            'nombre' => $request->nombre,
-            'precio' => $request->precio,
-            'stock'  => $request->stock,
+            'nombre'      => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'precio'      => $request->precio,
+            'stock'       => $request->stock,
         ]);
 
         return redirect()->route('home')->with('success', 'Producto actualizado correctamente');
