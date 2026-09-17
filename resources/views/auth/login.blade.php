@@ -12,7 +12,12 @@
     <div class="card shadow-sm border-0 p-4" style="width: 100%; max-width: 400px; border-radius: 12px;">
         <div class="card-body">
             <h3 class="text-center fw-bold mb-4 text-primary">Iniciar Sesión</h3>
-
+            @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show py-2 mb-3 small" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
             @if ($errors->any())
                 <div class="alert alert-danger py-2 mb-3">
                     <ul class="mb-0 ps-3 small">

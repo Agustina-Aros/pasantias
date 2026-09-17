@@ -34,9 +34,6 @@ public function showRegistrationForm()
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
-        Auth::login($user);
-
-        return redirect()->route('home');
+        return redirect()->route('login')->with('success', 'Cuenta creada con éxito. Ya puedes iniciar sesión.');
     }
 }
