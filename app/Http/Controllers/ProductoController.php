@@ -28,7 +28,7 @@ class ProductoController extends Controller
             'stock'       => $request->stock,
         ]);
 
-        return redirect()->route('home')->with('success', 'Producto creado correctamente');
+       return redirect()->route('home')->with('success', 'Producto actualizado correctamente');
     }
 
     public function edit($id)
@@ -38,22 +38,31 @@ class ProductoController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nombre'      => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
-            'precio'      => 'required|numeric|min:0',
-            'stock'       => 'required|integer|min:0',
-        ]);
-
-        $prod = Producto::findOrFail($id);
-        $prod->update([
-            'nombre'      => $request->nombre,
-            'descripcion' => $request->descripcion,
-            'precio'      => $request->precio,
-            'stock'       => $request->stock,
+{
+    // Remplazar coma por punto antes de validar si el usuario usó formato con coma
+    if ($request->has('precio')) {
+        $request->merge([
+            'precio' => str_replace(',', '.', $request->precio)
         ]);
     }
+
+    $request->validate([
+        'nombre'      => 'required|string|max:255',
+        'descripcion' => 'nullable|string',
+        'precio'      => 'required|numeric|min:0',
+        'stock'       => 'required|integer|min:0',
+    ]);
+
+    $prod = Producto::findOrFail($id);
+    $prod->update([
+        'nombre'      => $request->nombre,
+        'descripcion' => $request->descripcion,
+        'precio'      => $request->precio,
+        'stock'       => $request->stock,
+    ]);
+
+    return redirect()->route('home')->with('success', 'Producto actualizado correctamente');
+}
     public function destroy($id)
     {
         $producto = Producto::findOrFail($id);
