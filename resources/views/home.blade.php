@@ -12,7 +12,6 @@
     <!-- Navbar Adaptable con Menú Desplegable -->
     <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#"></a>
             <!-- Brand con Logo y Nombre del Sistema -->
             <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
                 <img src="{{ asset('imagenes/logo.png') }}" alt="Logo" class="me-2" style="max-height: 40px; width: auto; object-fit: contain;">
@@ -68,7 +67,7 @@
                     <table class="table table-hover align-middle mb-0">
                         <thead class="table-light text-nowrap">
                             <tr>
-                                <th>ID</th>
+                                <th>#</th> <!-- Cambiado ID por # -->
                                 <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th>Precio</th>
@@ -79,7 +78,9 @@
                         <tbody>
                             @forelse ($productos as $producto)
                                 <tr>
-                                    <td class="fw-bold text-secondary">{{ $producto->id }}</td>
+                                    <td class="fw-bold text-secondary">
+                                        {{ $loop->iteration + ($productos->currentPage() - 1) * $productos->perPage() }}
+                                    </td>
                                     <td class="text-nowrap">{{ $producto->nombre }}</td>
                                     <td class="text-truncate" style="max-width: 200px;">{{ $producto->descripcion ?? 'Sin descripción' }}</td>
                                     <td class="text-nowrap">${{ number_format($producto->precio, 2) }}</td>
@@ -137,8 +138,12 @@
                         <div class="text-muted small">
                             Mostrando {{ $productos->firstItem() }} a {{ $productos->lastItem() }} de {{ $productos->total() }} resultados
                         </div>
-
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
