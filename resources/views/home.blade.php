@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('imagenes/icono.png') }}">
 </head>
-<body class="bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
 
     <!-- Navbar Adaptable con Menú Desplegable -->
     <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
@@ -137,8 +137,19 @@
                         <div class="text-muted small">
                             Mostrando {{ $productos->firstItem() }} a {{ $productos->lastItem() }} de {{ $productos->total() }} resultados
                         </div>
-
                     </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Cierre del container principal -->
+
+    <footer class="bg-secondary text-white text-center py-3 mt-auto">
+    <div class="container">
+        <p class="mb-0">&copy; {{ date('Y') }} ZapaMundo. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
