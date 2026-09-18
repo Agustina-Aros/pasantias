@@ -12,7 +12,7 @@
     <!-- Navbar Adaptable con Menú Desplegable -->
     <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Zapamundo</a>
+            <a class="navbar-brand fw-bold" href="#"></a>
             <!-- Brand con Logo y Nombre del Sistema -->
             <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
                 <img src="{{ asset('imagenes/logo.png') }}" alt="Logo" class="me-2" style="max-height: 40px; width: auto; object-fit: contain;">
